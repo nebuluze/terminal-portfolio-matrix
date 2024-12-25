@@ -66,12 +66,13 @@ export const Terminal = () => {
             <div className="w-3 h-3 rounded-full bg-green-500" />
           </div>
           <div className="text-terminal-white text-sm">vishnu@portfolio:~</div>
-          <div className="w-16" /> {/* Spacer for symmetry */}
+          <div className="w-16" />
         </div>
         
         <div
           ref={terminalRef}
           className="h-[600px] overflow-y-auto p-4 font-mono"
+          onClick={() => document.querySelector('input')?.focus()}
         >
           <div className="animate-fade-up">
             {commands.banner()}

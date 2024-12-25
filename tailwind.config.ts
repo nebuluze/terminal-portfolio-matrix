@@ -19,6 +19,7 @@ export default {
     },
     extend: {
       colors: {
+        border: "hsl(var(--border))",
         terminal: {
           bg: "#000000",
           text: "#00ff00",

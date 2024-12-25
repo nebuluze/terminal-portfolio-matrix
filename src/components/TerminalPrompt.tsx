@@ -12,17 +12,24 @@ const TerminalPrompt: React.FC<TerminalPromptProps> = ({
   onKeyDown,
 }) => {
   return (
-    <div className="flex items-center text-terminal-text relative">
+    <div className="flex items-center text-terminal-text">
       <span className="mr-2">$</span>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={onKeyDown}
-        className="flex-1 bg-transparent outline-none caret-transparent"
-        autoFocus
-      />
-      <span className="animate-blink absolute" style={{ left: `${input.length * 8 + 24}px` }}>▊</span>
+      <div className="flex-1 relative">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={onKeyDown}
+          className="w-full bg-transparent outline-none caret-transparent"
+          autoFocus
+        />
+        <span 
+          className="animate-blink absolute top-0"
+          style={{ left: `${input.length * 8}px` }}
+        >
+          ▊
+        </span>
+      </div>
     </div>
   );
 };

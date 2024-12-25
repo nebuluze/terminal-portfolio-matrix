@@ -25,6 +25,12 @@ export const Terminal = () => {
     setCommandHistory((prev) => [...prev, trimmedCmd]);
     setHistoryIndex(-1);
 
+    if (trimmedCmd === "clear") {
+      setHistory([]);
+      setInput("");
+      return;
+    }
+
     const output = commands[trimmedCmd]
       ? commands[trimmedCmd]()
       : `Command not found: ${trimmedCmd}. Type 'help' for available commands.`;

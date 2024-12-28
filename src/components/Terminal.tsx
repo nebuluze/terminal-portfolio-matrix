@@ -32,6 +32,23 @@ export const Terminal = () => {
       return;
     }
 
+    // Handle social media commands
+    const socialLinks: { [key: string]: string } = {
+      instagram: "https://instagram.com/vishnu2ko4",
+      github: "https://github.com/techvishnu",
+      twitter: "https://twitter.com/vishnu2k04",
+      linkedin: "https://linkedin.com/in/techvishnu",
+      youtube: "https://youtube.com/@technicalvishnu",
+      reddit: "https://reddit.com/user/OnlyMemer420"
+    };
+
+    if (socialLinks[trimmedCmd]) {
+      window.open(socialLinks[trimmedCmd], '_blank');
+      setHistory((prev) => [...prev, `$ ${cmd}`, `Opening ${trimmedCmd} profile...`]);
+      setInput("");
+      return;
+    }
+
     const output = commands[trimmedCmd]
       ? commands[trimmedCmd]()
       : `Command not found: ${trimmedCmd}. Type 'help' for available commands.`;

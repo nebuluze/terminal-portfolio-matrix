@@ -18,7 +18,7 @@ const TerminalOutput: React.FC<TerminalOutputProps> = ({ content }) => {
         } else {
           clearInterval(timer);
         }
-      }, 30); // Adjust speed of typing animation
+      }, 10); // Reduced from 30 to 10 for 3x faster animation
 
       return () => clearInterval(timer);
     } else {
@@ -26,7 +26,6 @@ const TerminalOutput: React.FC<TerminalOutputProps> = ({ content }) => {
     }
   }, [content, currentIndex, isCommand]);
 
-  // Split content by newlines and render each line separately
   const contentLines = displayedContent.split('\n').filter(line => line.trim() !== '');
 
   return (

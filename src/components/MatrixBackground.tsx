@@ -10,7 +10,6 @@ const MatrixBackground = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set canvas size to window size
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -18,32 +17,37 @@ const MatrixBackground = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Matrix characters
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()";
     const charArray = chars.split('');
     const fontSize = 14;
     const columns = canvas.width / fontSize;
     const drops: number[] = [];
 
-    // Initialize drops
     for (let i = 0; i < columns; i++) {
       drops[i] = 1;
     }
 
     const draw = () => {
-      // Add semi-transparent black to create fade effect
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = '#0F0'; // Matrix green
+      ctx.fillStyle = '#50fa7b'; // Brighter green color
       ctx.font = `${fontSize}px monospace`;
 
-      // Draw characters
       for (let i = 0; i < drops.length; i++) {
         const char = charArray[Math.floor(Math.random() * charArray.length)];
-        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+        
+        // Add glow effect
+        ctx.shadowBlur = 5;
+        ctx.shadowColor = '#50fa7b';
+        
+        ctx.fillText(char, x, y);
+        
+        // Reset shadow
+        ctx.shadowBlur = 0;
 
-        // Reset drop when it reaches bottom
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
@@ -51,7 +55,6 @@ const MatrixBackground = () => {
       }
     };
 
-    // Animation loop
     const interval = setInterval(draw, 33);
 
     return () => {

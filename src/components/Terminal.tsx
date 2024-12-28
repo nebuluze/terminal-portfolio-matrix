@@ -2,8 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { commands } from "../lib/commands";
 import TerminalPrompt from "./TerminalPrompt";
 import TerminalOutput from "./TerminalOutput";
-import MatrixBackground from "./MatrixBackground";
-import TerminalHeader from "./TerminalHeader";
 
 export const Terminal = () => {
   const [history, setHistory] = useState<string[]>([]);
@@ -29,22 +27,6 @@ export const Terminal = () => {
 
     if (trimmedCmd === "clear") {
       setHistory([]);
-      setInput("");
-      return;
-    }
-
-    const socialLinks: { [key: string]: string } = {
-      instagram: "https://instagram.com/vishnu2ko4",
-      github: "https://github.com/techvishnu",
-      twitter: "https://twitter.com/vishnu2k04",
-      linkedin: "https://linkedin.com/in/techvishnu",
-      youtube: "https://youtube.com/@technicalvishnu",
-      reddit: "https://reddit.com/user/OnlyMemer420"
-    };
-
-    if (socialLinks[trimmedCmd]) {
-      window.open(socialLinks[trimmedCmd], '_blank');
-      setHistory((prev) => [...prev, `$ ${cmd}`, `Opening ${trimmedCmd} profile...`]);
       setInput("");
       return;
     }
@@ -82,9 +64,17 @@ export const Terminal = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-terminal-bg">
-      <MatrixBackground />
-      <div className="w-full max-w-4xl bg-terminal-bg bg-opacity-90 border border-terminal-text rounded-lg shadow-lg overflow-hidden">
-        <TerminalHeader />
+      <div className="w-full max-w-4xl bg-terminal-bg border border-terminal-text rounded-lg shadow-lg overflow-hidden">
+        <div className="flex items-center justify-between p-2 bg-terminal-text bg-opacity-20">
+          <div className="flex space-x-2">
+            <div className="w-3 h-3 rounded-full bg-red-500" />
+            <div className="w-3 h-3 rounded-full bg-yellow-500" />
+            <div className="w-3 h-3 rounded-full bg-green-500" />
+          </div>
+          <div className="text-terminal-white text-sm">vishnu@portfolio:~</div>
+          <div className="w-16" />
+        </div>
+        
         <div
           ref={terminalRef}
           className="h-[600px] overflow-y-auto p-4 font-mono"

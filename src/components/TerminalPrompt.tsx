@@ -15,11 +15,13 @@ const TerminalPrompt: React.FC<TerminalPromptProps> = ({
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
+    // Focus input when component mounts or updates
     inputRef.current?.focus();
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
+    // Play typing sound
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.play().catch(err => console.log("Audio play failed:", err));
@@ -41,12 +43,12 @@ const TerminalPrompt: React.FC<TerminalPromptProps> = ({
           value={input}
           onChange={handleChange}
           onKeyDown={onKeyDown}
-          className="w-full bg-transparent outline-none caret-transparent pr-4"
+          className="w-full bg-transparent outline-none caret-transparent"
           autoFocus
         />
         <span 
           className="animate-blink absolute top-0"
-          style={{ left: `${input.length * 8.5}px` }}
+          style={{ left: `${input.length * 8}px` }}
         >
           ▊
         </span>

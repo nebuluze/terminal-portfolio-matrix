@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { commands } from "../lib/commands";
 import TerminalPrompt from "./TerminalPrompt";
 import TerminalOutput from "./TerminalOutput";
+import MatrixBackground from "./MatrixBackground";
 
 export const Terminal = () => {
   const [history, setHistory] = useState<string[]>([]);
@@ -64,7 +65,8 @@ export const Terminal = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-terminal-bg">
-      <div className="w-full max-w-4xl bg-terminal-bg border border-terminal-text rounded-lg shadow-lg overflow-hidden">
+      <MatrixBackground />
+      <div className="w-full max-w-4xl bg-terminal-bg bg-opacity-90 border border-terminal-text rounded-lg shadow-lg overflow-hidden">
         <div className="flex items-center justify-between p-2 bg-terminal-text bg-opacity-20">
           <div className="flex space-x-2">
             <div className="w-3 h-3 rounded-full bg-red-500" />

@@ -3,6 +3,7 @@ import { commands } from "../lib/commands";
 import TerminalPrompt from "./TerminalPrompt";
 import TerminalOutput from "./TerminalOutput";
 import MatrixBackground from "./MatrixBackground";
+import TerminalHeader from "./TerminalHeader";
 
 export const Terminal = () => {
   const [history, setHistory] = useState<string[]>([]);
@@ -32,7 +33,6 @@ export const Terminal = () => {
       return;
     }
 
-    // Handle social media commands
     const socialLinks: { [key: string]: string } = {
       instagram: "https://instagram.com/vishnu2ko4",
       github: "https://github.com/techvishnu",
@@ -84,16 +84,7 @@ export const Terminal = () => {
     <div className="min-h-screen flex items-center justify-center p-4 bg-terminal-bg">
       <MatrixBackground />
       <div className="w-full max-w-4xl bg-terminal-bg bg-opacity-90 border border-terminal-text rounded-lg shadow-lg overflow-hidden">
-        <div className="flex items-center justify-between p-2 bg-terminal-text bg-opacity-20">
-          <div className="flex space-x-2">
-            <div className="w-3 h-3 rounded-full bg-red-500" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500" />
-            <div className="w-3 h-3 rounded-full bg-green-500" />
-          </div>
-          <div className="text-terminal-white text-sm">vishnu@portfolio:~</div>
-          <div className="w-16" />
-        </div>
-        
+        <TerminalHeader />
         <div
           ref={terminalRef}
           className="h-[600px] overflow-y-auto p-4 font-mono"
